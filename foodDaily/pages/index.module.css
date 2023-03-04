@@ -14,8 +14,28 @@
   font-style: normal;
 }
 
-.index {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+:root .index {
+  --font-daily-white: #ffffff;
+  --font-daily-green: #52b45b;
+  --font-daily-light-gray: #f0f0f0;
+  --font-daily-dark-gray: #808080;
+  --font-daily-black: #000000;
 }
+
+/* Applies to all elements */
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+
+/* Applies globally to all elements, including those outside the scope of CSS Modules */
+/* :global body,
+:global html {
+  margin: 0;
+  padding: 0;
+} */
 
 .main,
 .main input {

@@ -1,17 +1,14 @@
+// Styling
+import styles from "./formhome.module.css";
+
 export default function FormWrapper({ title, children }) {
   return (
-    <div className="form-wrapper">
-      <h2
-      //   style={{
-      //     textAlign: "center",
-      //     margin: "0",
-      //     marginBottom: "2rem",
-      //     color: "black",
-      //   }}
-      >
+    <div className={styles.form_wrapper}>
+      <h2 className={styles.form_title}>
         {title}
+        <span className={styles.form_title_required}> *</span>
       </h2>
-      <div className="form-inner-wrapper">{children}</div>
+      <div className={styles.form_inner_wrapper}>{children}</div>
     </div>
   );
 }

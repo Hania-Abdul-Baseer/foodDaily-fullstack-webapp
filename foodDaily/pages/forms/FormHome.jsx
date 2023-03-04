@@ -5,6 +5,8 @@ import { Form } from "../forms/Form";
 
 // Functions
 import { useMultiStepForm } from "../hooks/useMultiStepForm";
+
+// Styling
 import styles from "./formhome.module.css";
 
 export function FormHome() {
@@ -71,9 +73,7 @@ export function FormHome() {
     { name: "Thai" },
     { name: "Spicy" },
     { name: "Sweet" },
-    { name: "Saviry" },
-    { name: "Sour" },
-    { name: "Salt" },
+    { name: "Savoury" },
   ];
 
   const availableTime = [
@@ -111,6 +111,7 @@ export function FormHome() {
         type="text"
         required
         value={data.name}
+        className={styles.form_text_input}
         onChange={(e) => updateFields({ name: e.target.value })}
       />
     </Form>,
@@ -120,12 +121,14 @@ export function FormHome() {
         required
         min={1}
         value={data.age}
+        className={styles.form_text_input}
         onChange={(e) => updateFields({ age: e.target.value })}
       />
     </Form>,
     <Form title="What is your gender?">
-      <label>
+      <label className={styles.form_label}>
         <input
+          className={styles.form_label_radio}
           type="radio"
           name="gender"
           value="Male"
@@ -135,8 +138,9 @@ export function FormHome() {
         />
         Male
       </label>
-      <label>
+      <label className={styles.form_label}>
         <input
+          className={styles.form_label_radio}
           type="radio"
           name="gender"
           value="Female"
@@ -152,6 +156,7 @@ export function FormHome() {
         type="text"
         required
         value={data.height}
+        className={styles.form_text_input}
         onChange={(e) => updateFields({ height: e.target.value })}
       />
     </Form>,
@@ -161,13 +166,15 @@ export function FormHome() {
         required
         min={1}
         value={data.weight}
+        className={styles.form_text_input}
         onChange={(e) => updateFields({ weight: e.target.value })}
       />
     </Form>,
     <Form title="What is your current level of physical activity?">
       {currentPhysicalActivity.map((activity) => (
-        <label>
+        <label className={styles.form_label}>
           <input
+            className={styles.form_label_radio}
             key={activity.current}
             type="radio"
             required
@@ -182,8 +189,9 @@ export function FormHome() {
     </Form>,
     <Form title="What are your goals in terms of weight management?">
       {currentGoals.map((item) => (
-        <label>
+        <label className={styles.form_label}>
           <input
+            className={styles.form_label_radio}
             key={item.goal}
             type="radio"
             required
@@ -198,8 +206,9 @@ export function FormHome() {
     </Form>,
     <Form title="What are your dietary restrictions or preferences?">
       {restrictions.map((restriction) => (
-        <label>
+        <label className={styles.form_label}>
           <input
+            className={styles.form_label_radio}
             key={restriction.name}
             type="radio"
             required
@@ -216,8 +225,9 @@ export function FormHome() {
     </Form>,
     <Form title="Do you have any food allergies or intolerances?">
       {allergens.map((allergy) => (
-        <label>
+        <label className={styles.form_label}>
           <input
+            className={styles.form_label_radio}
             key={allergy.name}
             type="radio"
             required
@@ -232,8 +242,9 @@ export function FormHome() {
     </Form>,
     <Form title="What are your favourite types of cuisine or flavours?">
       {cuisineFlavours.map((item) => (
-        <label>
+        <label className={styles.form_label}>
           <input
+            className={styles.form_label_radio}
             key={item.name}
             type="radio"
             required
@@ -248,8 +259,9 @@ export function FormHome() {
     </Form>,
     <Form title="How much time do you have for meal preparation each day?">
       {availableTime.map((item) => (
-        <label>
+        <label className={styles.form_label}>
           <input
+            className={styles.form_label_radio}
             key={item.time}
             type="radio"
             required
@@ -270,6 +282,7 @@ export function FormHome() {
         required
         min={100}
         value={data.budget}
+        className={styles.form_text_input}
         onChange={(e) => updateFields({ budget: e.target.value })}
       />
     </Form>,
@@ -278,25 +291,32 @@ export function FormHome() {
         type="text"
         required
         value={data.otherRequirements}
+        className={styles.form_text_input}
         onChange={(e) => updateFields({ otherRequirements: e.target.value })}
       />
     </Form>,
   ]);
 
   return (
-    <div className={styles["form-home-wrapper"]}>
+    <div className={styles.form_home_wrapper}>
       <form onSubmit={onSubmitForm}>
         <div className="form-page-number">
           {currentStepIndex + 1} / {steps.length}
         </div>
         {step}
-        <div className="form-home-inner-wrapper">
+        <div className={styles.form_home_inner_wrapper}>
           {!isFirstStep && (
-            <button type="button" onClick={prevStep}>
+            <button
+              type="button"
+              className={styles.form_home_prev}
+              onClick={prevStep}
+            >
               Previous
             </button>
           )}
-          <button type="submit">{isLastStep ? "Finish" : "Next"}</button>
+          <button type="submit" className={styles.form_home_next}>
+            {isLastStep ? "Finish" : "Next"}
+          </button>
         </div>
       </form>
     </div>

@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { FormHome } from "./forms/FormHome";
 import styles from "./index.module.css";
+import Navbar from "./navbar/Navbar";
 
 export default function Home() {
   const [dietaryRequirementsInput, setDietaryRequirementsInput] = useState("");
@@ -57,6 +58,7 @@ export default function Home() {
         </form>
         <div className={styles.result}>{result}</div>
       </main> */}
+      <Navbar />
       <FormHome />
     </div>
   );
