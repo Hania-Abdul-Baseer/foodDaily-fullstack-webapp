@@ -61,6 +61,7 @@
 
 .detail__wrapper{
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   width: 40%;
 }
@@ -74,17 +75,14 @@
 }
 
 .age{
-  width: 50px;
   text-align: center;
 }
 
 .physical{
-  width: 70px;
   text-align: center;
 }
 
 .diet{
-  width: 70px;
   text-align: center;
 }
 

@@ -363,23 +363,24 @@ export function FormHome() {
   }
 
   return (
-    <div className={styles.form_home_wrapper}>
-      {result ? <>
-        <Title></Title>
-        <Types 
-          diet={data.favouriteCuisine} age={data.age} goal={data.height} physical={data.weight} cuisine={data.allergens}>
-        </Types>
-        <Feed 
-          title= "Breakfast" link='/_next/static/media/breakfast.2b93a104.svg' plan={extractSection(result, "Breakfast:", "Lunch")}>
-        </Feed>
-        <Feed 
-          title= "Lunch" link='/_next/static/media/lunch.176b852f.svg' plan={extractSection(result, "Lunch:", "Dinner")}>
-        </Feed>
-        <Feed 
-        title= "Dinner" link= '/_next/static/media/dinner.5b8bff3b.svg' plan={getParagraphFromWordToEnd(result,"Dinner:")}>
-        </Feed>
+      <div>
+        {result ? 
+        <>
+          <Title></Title>
+          <Types 
+            diet={data.favouriteCuisine} age={data.dietartyRestrictions} goal={data.goals} physical={data.physicalActivity} cuisine={data.foodAllergies}>
+          </Types>
+          <Feed 
+            title= "Breakfast" link='/_next/static/media/breakfast.2b93a104.svg' plan={extractSection(result, "Breakfast:", "Lunch")}>
+          </Feed>
+          <Feed 
+            title= "Lunch" link='/_next/static/media/lunch.176b852f.svg' plan={extractSection(result, "Lunch:", "Dinner")}>
+          </Feed>
+          <Feed 
+          title= "Dinner" link= '/_next/static/media/dinner.5b8bff3b.svg' plan={getParagraphFromWordToEnd(result,"Dinner:")}>
+          </Feed>
         </> : 
-      <form onSubmit={onSubmitForm}>
+        <div className={styles.form_home_wrapper}><form onSubmit={onSubmitForm}>
         <div className="form-page-number">
           {currentStepIndex + 1} / {steps.length}
         </div>
@@ -393,9 +394,14 @@ export function FormHome() {
             >
               Previous
             </button>
-          </div>
-        </form>
-      )}
-    </div>
-  );
+          )}
+          <button type="submit" className={styles.form_home_next}>
+            {isLastStep ? "Finish" : "Next"}
+          </button>
+        </div>
+        </form></div>
+        }
+      </div>
+        
+  )
 }
