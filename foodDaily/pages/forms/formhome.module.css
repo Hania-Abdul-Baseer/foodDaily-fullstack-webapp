@@ -1,5 +1,5 @@
 .form_home_wrapper {
-  height: 100vh;
+  height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,6 +21,7 @@
   font-size: 48px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+  margin: 20px 0px;
 }
 
 .form_title_required {
