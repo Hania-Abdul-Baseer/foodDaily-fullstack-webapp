@@ -43,7 +43,6 @@ export default function Home() {
       {/* <Head>
         <title>FoodDaily</title>
       </Head>
-
       <main className={styles.main}>
         <h3>Generate Meal Plan</h3>
         <form onSubmit={onSubmit}>
@@ -57,9 +56,8 @@ export default function Home() {
           <input type="submit" value="Generate Meal Plan" />
         </form>
         <div className={styles.result}>{result}</div>
-      </main> */}
-      <Navbar />
-      <FormHome />
+      </main> 
+      */}
     </div>
   );
 }

@@ -10,6 +10,41 @@ import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import styles from "./formhome.module.css";
 
 export function FormHome() {
+  const [dietaryRequirementsInput, setDietaryRequirementsInput] = useState("");
+  const [result, setResult] = useState();
+
+  async function onFinalSubmit() {
+    const dietaryRequirements = data.age+" "+data.gender+" "+data.goals+" "+data.dietartyRestrictions+" "+data.foodAllergies+
+    " "+data.favouriteCuisine+" "+data.otherRequirements;
+    setDietaryRequirementsInput(dietaryRequirements);
+    console.log("dietaryrequirements:" + dietaryRequirementsInput);
+
+    try {
+      const response = await fetch("../api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          dietary_requirements: dietaryRequirementsInput,
+        }),
+      });
+
+      const inputData = await response.json();
+      if (response.status !== 200) {
+        throw (
+          inputData.error ||
+          new Error(`Request failed with status ${response.status}`)
+        );
+      }
+
+      setResult(inputData.result);
+      setDietaryRequirementsInput("");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   //  VARIABLES
   const INITIAL_DATA = {
     name: "",
@@ -94,7 +129,7 @@ export function FormHome() {
 
   function onSubmitForm(e) {
     e.preventDefault();
-    !isLastStep ? nextStep() : alert("Success!");
+    !isLastStep ? nextStep() : onFinalSubmit();
   }
 
   const {
@@ -318,6 +353,7 @@ export function FormHome() {
             {isLastStep ? "Finish" : "Next"}
           </button>
         </div>
+        <div>{result}</div>
       </form>
     </div>
   );

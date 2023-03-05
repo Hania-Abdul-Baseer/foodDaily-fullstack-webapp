@@ -8,8 +8,8 @@ export default function MyApp() {
   return (
     <>
       <Navbar />
-      {/* <FormHome /> */}
-      <Result></Result>
+      <FormHome />
+      {/* <Result></Result> */}
       <Footer></Footer>
     </>
   );

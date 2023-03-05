@@ -16,7 +16,7 @@ export default async function (req, res) {
   }
 
   const dietary_requirements = req.body.dietary_requirements || '';
-  if (dietary_requirements.trim().length === 0) {
+  if (dietary_requirements.length === 0) {
     res.status(400).json({
       error: {
         message: "Please enter a valid dietary requirement",
@@ -34,7 +34,6 @@ export default async function (req, res) {
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
-    // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
@@ -51,29 +50,21 @@ export default async function (req, res) {
 
 function generatePrompt(dietary_requirements) {
   return `Suggest a meal plan for a specific dietary requirements.
-
-Dietary Requirement: Vegan
-Meal Plan: Breakfast:
-
-Overnight oats with chia seeds, almond milk, and berries
-Smoothie bowl with frozen fruit, almond milk, and vegan protein powder
-Tofu scramble with spinach and avocado on whole grain toast
+Information about the person and dietary requirements: 23 female loose fat Vegan wheat Japanese halal
+Meal Plan: A 23 year old female who wants to loose fate and is restricted to Vegan diet, is allergic to wheat, likes Japanese
+food, and has other requirements of halal should follow this meal plan: 
+Breakfast:
+Tofu scramble with mixed vegetables (such as bell peppers, onions, and spinach), cooked in olive oil
+Sliced avocado
+Black coffee or tea
 Lunch:
-
-Quinoa salad with roasted vegetables and a tahini dressing
-Vegan lentil soup with whole grain crackers
-Roasted vegetable wrap with hummus and avocado
+Vegetable sushi rolls (with avocado, cucumber, carrot, and/or sweet potato), served with gluten-free soy sauce or tamari
+Edamame
+Side salad with mixed greens, cherry tomatoes, and a light vinaigrette dressing
 Dinner:
-
-Brown rice and vegetable stir-fry with tofu or tempeh
-Vegan chili with quinoa and avocado
-Lentil and vegetable curry with brown rice
-Snacks:
-
-Apple slices with almond butter
-Hummus and vegetable sticks
-Vegan protein bar
-
-Dietary Requirement: ${dietary_requirements}
+Grilled tempeh or tofu with sautéed bok choy and shiitake mushrooms, seasoned with gluten-free soy sauce or tamari
+Quinoa or brown rice
+Miso soup (with halal ingredients)
+Information about the person and dietary requirements: ${dietary_requirements}
 Meal Plan:`;
 }
