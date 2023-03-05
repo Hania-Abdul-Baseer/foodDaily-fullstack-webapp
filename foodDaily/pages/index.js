@@ -57,9 +57,8 @@ export default function Home() {
           <input type="submit" value="Generate Meal Plan" />
         </form>
         <div className={styles.result}>{result}</div>
-      </main> */}
-      <Navbar />
-      <FormHome />
+      </main> 
+      */}
     </div>
   );
 }

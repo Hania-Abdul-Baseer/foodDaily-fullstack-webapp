@@ -10,6 +10,43 @@ import { useMultiStepForm } from "../hooks/useMultiStepForm";
 import styles from "./formhome.module.css";
 
 export function FormHome() {
+  const [dietaryRequirementsInput, setDietaryRequirementsInput] = useState("");
+  const [result, setResult] = useState();
+
+  async function onFinalSubmit() {
+    const dietaryRequirements = data.age+" "+data.gender+" "+data.goals+" "+data.dietartyRestrictions+" "+data.foodAllergies+
+    " "+data.favouriteCuisine+" "+data.otherRequirements;
+    setDietaryRequirementsInput(dietaryRequirements);
+    console.log("dietaryrequirements:" + dietaryRequirementsInput);
+
+    try {
+      const response = await fetch("../api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          dietary_requirements: dietaryRequirementsInput,
+        }),
+      });
+
+      const inputData = await response.json();
+      if (response.status !== 200) {
+        throw (
+          inputData.error ||
+          new Error(`Request failed with status ${response.status}`)
+        );
+      }
+
+      setResult(inputData.result);
+      setDietaryRequirementsInput("");
+    } catch (error) {
+      // Consider implementing your own error handling logic here
+      console.error(error);
+      alert("line 44");
+    }
+  }
+
   //  VARIABLES
   const INITIAL_DATA = {
     name: "",
@@ -94,7 +131,7 @@ export function FormHome() {
 
   function onSubmitForm(e) {
     e.preventDefault();
-    !isLastStep ? nextStep() : alert("Success!");
+    !isLastStep ? nextStep() : onFinalSubmit();
   }
 
   const {
@@ -118,7 +155,7 @@ export function FormHome() {
     <Form title="What is your age?">
       <input
         type="number"
-        required
+        //required
         min={1}
         value={data.age}
         className={styles.form_text_input}
@@ -134,7 +171,7 @@ export function FormHome() {
           value="Male"
           checked={data.gender === "Male"}
           onClick={(e) => updateFields({ gender: e.target.value })}
-          required
+          //required
         />
         Male
       </label>
@@ -146,7 +183,7 @@ export function FormHome() {
           value="Female"
           checked={data.gender === "Female"}
           onClick={(e) => updateFields({ gender: e.target.value })}
-          required
+          //required
         />
         Female
       </label>
@@ -154,7 +191,7 @@ export function FormHome() {
     <Form title="What is your height?">
       <input
         type="text"
-        required
+        //required
         value={data.height}
         className={styles.form_text_input}
         onChange={(e) => updateFields({ height: e.target.value })}
@@ -163,7 +200,7 @@ export function FormHome() {
     <Form title="What is your weight in (KG)?">
       <input
         type="text"
-        required
+        //required
         min={1}
         value={data.weight}
         className={styles.form_text_input}
@@ -177,7 +214,7 @@ export function FormHome() {
             className={styles.form_label_radio}
             key={activity.current}
             type="radio"
-            required
+            //required
             checked={data.physicalActivity === activity.current}
             name="physical activity"
             value={activity.current}
@@ -194,7 +231,7 @@ export function FormHome() {
             className={styles.form_label_radio}
             key={item.goal}
             type="radio"
-            required
+            //required
             checked={data.goals === item.goal}
             name="goal"
             value={item.goal}
@@ -211,7 +248,7 @@ export function FormHome() {
             className={styles.form_label_radio}
             key={restriction.name}
             type="radio"
-            required
+            //required
             checked={data.dietartyRestrictions === restriction.name}
             name="restrictions"
             value={restriction.name}
@@ -230,7 +267,7 @@ export function FormHome() {
             className={styles.form_label_radio}
             key={allergy.name}
             type="radio"
-            required
+            //required
             checked={data.foodAllergies === allergy.name}
             name="food allergy"
             value={allergy.name}
@@ -247,7 +284,7 @@ export function FormHome() {
             className={styles.form_label_radio}
             key={item.name}
             type="radio"
-            required
+            //required
             checked={data.favouriteCuisine === item.name}
             name="favourite cuisine"
             value={item.name}
@@ -264,7 +301,7 @@ export function FormHome() {
             className={styles.form_label_radio}
             key={item.time}
             type="radio"
-            required
+            //required
             checked={data.mealPreparationTime === item.time}
             name="meal prep time"
             value={item.time}
@@ -279,7 +316,7 @@ export function FormHome() {
     <Form title="What is your budget for groceries and meals per month?">
       <input
         type="text"
-        required
+        //required
         min={100}
         value={data.budget}
         className={styles.form_text_input}
@@ -289,7 +326,7 @@ export function FormHome() {
     <Form title="Do you have any other specific requirements or preferences for your meal plan?">
       <input
         type="text"
-        required
+        //required
         value={data.otherRequirements}
         className={styles.form_text_input}
         onChange={(e) => updateFields({ otherRequirements: e.target.value })}
@@ -318,6 +355,7 @@ export function FormHome() {
             {isLastStep ? "Finish" : "Next"}
           </button>
         </div>
+        <div>{result}</div>
       </form>
     </div>
   );
