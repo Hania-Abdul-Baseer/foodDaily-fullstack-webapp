@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Result} from "../result/Result"
 
 // Components
 import { Form } from "../forms/Form";
@@ -334,6 +335,7 @@ export function FormHome() {
 
   return (
     <div className={styles.form_home_wrapper}>
+      {result ? <Result output={result}></Result>: 
       <form onSubmit={onSubmitForm}>
         <div className="form-page-number">
           {currentStepIndex + 1} / {steps.length}
@@ -353,8 +355,8 @@ export function FormHome() {
             {isLastStep ? "Finish" : "Next"}
           </button>
         </div>
-        <div>{result}</div>
       </form>
+      } 
     </div>
   );
 }
