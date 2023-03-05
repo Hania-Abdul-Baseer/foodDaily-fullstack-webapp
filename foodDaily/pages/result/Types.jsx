@@ -1,13 +1,13 @@
-import styles from './result.module.css'
+import style from './result.module.css'
 
 function types ({diet,age,goal,physical}){
     return (
-        <div className={styles.container}>
-            <div className={styles.wrapper}>
-                <div className={`${styles.age } ${styles.options}`}>{age}</div>
-                <div className={`${styles.physical} ${styles.options}`}> {physical} </div>
-                <div className={`${styles.diet } ${styles.options}`}>{diet}</div>
-                <div className={`${styles.gender} ${styles.options}`}> {goal} </div>
+        <div className={style.detail__container}>
+            <div className={style.detail__wrapper}>
+                <div className={`${style.age } ${style.options}`}>{age}</div>
+                <div className={`${style.physical} ${style.options}`}> {physical} </div>
+                <div className={`${style.diet } ${style.options}`}>{diet}</div>
+                <div className={`${style.gender} ${style.options}`}> {goal} </div>
                 {/* <div className="cuisine options">{cuisine}</div> */}
             </div>
         </div>

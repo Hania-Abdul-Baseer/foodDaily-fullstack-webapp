@@ -53,13 +53,13 @@
   height: 150px;
 }
 
-.container{
+.detail__container{
   display: flex;
   justify-content: center;
   padding: 28px 0 28px 0;
 }
 
-.wrapper{
+.detail__wrapper{
   display: flex;
   justify-content: space-between;
   width: 40%;

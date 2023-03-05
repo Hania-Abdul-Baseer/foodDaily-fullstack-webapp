@@ -7,7 +7,7 @@ function feed({title,link,plan}){
               <img className = {styles.imgs} src={link} alt="img" />
             <div className={styles.details}>
               <h1 className={styles.meal__type}>{title}</h1>
-              <p className={styles.para}>{plan} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi amet itaque odio ut in dolores perferendis voluptatibus animi doloribus soluta, pariatur temporibus ducimus tenetur est blanditiis, dolore adipisci molestias nulla.</p>
+              <p className={styles.para}>{plan}</p>
             </div>
           </div>
       </div>
