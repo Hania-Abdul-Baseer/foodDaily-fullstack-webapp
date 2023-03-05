@@ -1,10 +1,11 @@
 import { useState } from "react";
-import Title from "../result/Title";
-import Feed from "../result/Feed";
-import Types from "../result/Types";
-import breakfast from "../result/assets/breakfast.svg";
-import lunch from "../result/assets/lunch.svg";
-import dinner from "../result/assets/dinner.svg";
+import Title from '../result/Title'
+import Feed from '../result/Feed'
+import Types from '../result/Types'
+import breakfast from '../result/assets/breakfast.svg'
+import lunch from '../result/assets/lunch.svg'
+import dinner from '../result/assets/dinner.svg'
+import style from '../result/result.module.css'
 // Components
 import { Form } from "../forms/Form";
 
@@ -349,49 +350,48 @@ export function FormHome() {
     </Form>,
   ]);
 
+  function extractSection(paragraph, startWord, endWord) {
+    const startIndex = paragraph.indexOf(startWord) + startWord.length;
+    const endIndex = paragraph.indexOf(endWord);
+    const section = paragraph.substring(startIndex, endIndex).trim();
+    return section;
+  }
+
+  function getParagraphFromWordToEnd(paragraph, word) {
+    const startIndex = paragraph.indexOf(word)+7;
+    return paragraph.substring(startIndex);
+  }
+
   return (
     <div className={styles.form_home_wrapper}>
-      {result ? (
-        <>
-          <Title></Title>
-          <Types
-            diet="Vegan"
-            age={data.age}
-            goal="Lose Weight"
-            physical="Active"
-            cuisine="Chinese"
-          ></Types>
-          <Feed
-            title="Breakfast"
-            link="/_next/static/media/breakfast.2b93a104.svg"
-          ></Feed>
-          <Feed
-            title="Lunch"
-            link="/_next/static/media/lunch.176b852f.svg"
-          ></Feed>
-          <Feed
-            title="Dinner"
-            link="/_next/static/media/dinner.5b8bff3b.svg"
-          ></Feed>
-        </>
-      ) : (
-        <form onSubmit={onSubmitForm}>
-          <div className="form-page-number">
-            {currentStepIndex + 1} / {steps.length}
-          </div>
-          {step}
-          <div className={styles.form_home_inner_wrapper}>
-            {!isFirstStep && (
-              <button
-                type="button"
-                className={styles.form_home_prev}
-                onClick={prevStep}
-              >
-                Previous
-              </button>
-            )}
-            <button type="submit" className={styles.form_home_next}>
-              {isLastStep ? "Finish" : "Next"}
+      {result ? <>
+        <Title></Title>
+        <Types 
+          diet={data.favouriteCuisine} age={data.age} goal={data.height} physical={data.weight} cuisine={data.allergens}>
+        </Types>
+        <Feed 
+          title= "Breakfast" link='/_next/static/media/breakfast.2b93a104.svg' plan={extractSection(result, "Breakfast:", "Lunch")}>
+        </Feed>
+        <Feed 
+          title= "Lunch" link='/_next/static/media/lunch.176b852f.svg' plan={extractSection(result, "Lunch:", "Dinner")}>
+        </Feed>
+        <Feed 
+        title= "Dinner" link= '/_next/static/media/dinner.5b8bff3b.svg' plan={getParagraphFromWordToEnd(result,"Dinner:")}>
+        </Feed>
+        </> : 
+      <form onSubmit={onSubmitForm}>
+        <div className="form-page-number">
+          {currentStepIndex + 1} / {steps.length}
+        </div>
+        {step}
+        <div className={styles.form_home_inner_wrapper}>
+          {!isFirstStep && (
+            <button
+              type="button"
+              className={styles.form_home_prev}
+              onClick={prevStep}
+            >
+              Previous
             </button>
           </div>
         </form>
