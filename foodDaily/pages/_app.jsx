@@ -6,7 +6,12 @@ export default function MyApp() {
   return (
     <>
       <Navbar />
+<<<<<<< Updated upstream
       <FormHome />
+=======
+      <Home />
+      <Footer />
+>>>>>>> Stashed changes
     </>
   );
 }

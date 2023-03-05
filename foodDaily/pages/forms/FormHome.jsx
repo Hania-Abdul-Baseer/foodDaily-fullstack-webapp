@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Title from '../result/Title'
-import Feed from '../result/Feed'
-import Types from '../result/Types'
-import breakfast from '../result/assets/breakfast.svg'
-import lunch from '../result/assets/lunch.svg'
-import dinner from '../result/assets/dinner.svg'
+import Title from "../result/Title";
+import Feed from "../result/Feed";
+import Types from "../result/Types";
+import breakfast from "../result/assets/breakfast.svg";
+import lunch from "../result/assets/lunch.svg";
+import dinner from "../result/assets/dinner.svg";
 // Components
 import { Form } from "../forms/Form";
 
@@ -19,8 +19,20 @@ export function FormHome() {
   const [result, setResult] = useState();
 
   async function onFinalSubmit() {
-    const dietaryRequirements = data.age+" "+data.gender+" "+data.goals+" "+data.dietartyRestrictions+" "+data.foodAllergies+
-    " "+data.favouriteCuisine+" "+data.otherRequirements;
+    const dietaryRequirements =
+      data.age +
+      " " +
+      data.gender +
+      " " +
+      data.goals +
+      " " +
+      data.dietartyRestrictions +
+      " " +
+      data.foodAllergies +
+      " " +
+      data.favouriteCuisine +
+      " " +
+      data.otherRequirements;
     setDietaryRequirementsInput(dietaryRequirements);
     console.log("dietaryrequirements:" + dietaryRequirementsInput);
 
@@ -339,34 +351,51 @@ export function FormHome() {
 
   return (
     <div className={styles.form_home_wrapper}>
-      {result ? <>
-        <Title></Title>
-        <Types diet="Vegan" age={data.age} goal="Lose Weight" physical="Active" cuisine="Chinese"></Types>
-        <Feed title= "Breakfast" link='/_next/static/media/breakfast.2b93a104.svg'></Feed>
-        <Feed title= "Lunch" link='/_next/static/media/lunch.176b852f.svg'></Feed>
-        <Feed title= "Dinner" link= '/_next/static/media/dinner.5b8bff3b.svg'></Feed>
-        </> : 
-      <form onSubmit={onSubmitForm}>
-        <div className="form-page-number">
-          {currentStepIndex + 1} / {steps.length}
-        </div>
-        {step}
-        <div className={styles.form_home_inner_wrapper}>
-          {!isFirstStep && (
-            <button
-              type="button"
-              className={styles.form_home_prev}
-              onClick={prevStep}
-            >
-              Previous
+      {result ? (
+        <>
+          <Title></Title>
+          <Types
+            diet="Vegan"
+            age={data.age}
+            goal="Lose Weight"
+            physical="Active"
+            cuisine="Chinese"
+          ></Types>
+          <Feed
+            title="Breakfast"
+            link="/_next/static/media/breakfast.2b93a104.svg"
+          ></Feed>
+          <Feed
+            title="Lunch"
+            link="/_next/static/media/lunch.176b852f.svg"
+          ></Feed>
+          <Feed
+            title="Dinner"
+            link="/_next/static/media/dinner.5b8bff3b.svg"
+          ></Feed>
+        </>
+      ) : (
+        <form onSubmit={onSubmitForm}>
+          <div className="form-page-number">
+            {currentStepIndex + 1} / {steps.length}
+          </div>
+          {step}
+          <div className={styles.form_home_inner_wrapper}>
+            {!isFirstStep && (
+              <button
+                type="button"
+                className={styles.form_home_prev}
+                onClick={prevStep}
+              >
+                Previous
+              </button>
+            )}
+            <button type="submit" className={styles.form_home_next}>
+              {isLastStep ? "Finish" : "Next"}
             </button>
-          )}
-          <button type="submit" className={styles.form_home_next}>
-            {isLastStep ? "Finish" : "Next"}
-          </button>
-        </div>
-      </form>
-      } 
+          </div>
+        </form>
+      )}
     </div>
   );
 }
