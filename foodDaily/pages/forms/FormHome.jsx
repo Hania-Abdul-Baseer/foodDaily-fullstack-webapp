@@ -334,6 +334,7 @@ export function FormHome() {
 
   return (
     <div className={styles.form_home_wrapper}>
+      {result ? <div>{result}</div> : 
       <form onSubmit={onSubmitForm}>
         <div className="form-page-number">
           {currentStepIndex + 1} / {steps.length}
@@ -353,8 +354,8 @@ export function FormHome() {
             {isLastStep ? "Finish" : "Next"}
           </button>
         </div>
-        <div>{result}</div>
       </form>
+      } 
     </div>
   );
 }
