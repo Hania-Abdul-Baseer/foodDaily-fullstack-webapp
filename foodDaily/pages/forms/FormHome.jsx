@@ -1,5 +1,10 @@
 import { useState } from "react";
-
+import Title from '../result/Title'
+import Feed from '../result/Feed'
+import Types from '../result/Types'
+import breakfast from '../result/assets/breakfast.svg'
+import lunch from '../result/assets/lunch.svg'
+import dinner from '../result/assets/dinner.svg'
 // Components
 import { Form } from "../forms/Form";
 
@@ -334,7 +339,13 @@ export function FormHome() {
 
   return (
     <div className={styles.form_home_wrapper}>
-      {result ? <div>{result}</div> : 
+      {result ? <>
+        <Title></Title>
+        <Types diet="Vegan" age={data.age} goal="Lose Weight" physical="Active" cuisine="Chinese"></Types>
+        <Feed title= "Breakfast" link='/_next/static/media/breakfast.2b93a104.svg'></Feed>
+        <Feed title= "Lunch" link='/_next/static/media/lunch.176b852f.svg'></Feed>
+        <Feed title= "Dinner" link= '/_next/static/media/dinner.5b8bff3b.svg'></Feed>
+        </> : 
       <form onSubmit={onSubmitForm}>
         <div className="form-page-number">
           {currentStepIndex + 1} / {steps.length}

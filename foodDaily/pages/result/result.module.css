@@ -1,0 +1,96 @@
+.component__wrapper{
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.diet__wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.table{
+  /* border-radius: 20px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+  /* border-bottom: solid 1px white; */
+  border-bottom: solid 1px black;
+  /* border: solid 1px black; */
+  width: 900px;
+  background-color:rgb(82, 180, 91,0.08);
+  border-radius: 20px;
+
+}
+
+.meal__type{
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.details{
+  display: flex;
+  flex-direction: column;
+  /* padding-left: 16px; */
+  width: 70%;
+}
+
+.para{
+  padding-top: 8px;
+  line-height: 1.5;
+  font-family: "Roboto", sans-serif;
+}
+
+/* .meal__type{
+  border: 1px black solid;
+} */
+
+.imgs{
+  width: 150px;
+  height: 150px;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  padding: 28px 0 28px 0;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.options{
+  padding: 10px;
+  color: white;
+  background-color: #52B45B;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.age{
+  width: 50px;
+  text-align: center;
+}
+
+.physical{
+  width: 70px;
+  text-align: center;
+}
+
+.diet{
+  width: 70px;
+  text-align: center;
+}
+
+.header{
+  padding-top: 40px;
+  font-size: 40px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
